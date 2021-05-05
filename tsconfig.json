@@ -5,6 +5,9 @@
     "paths": {
         "~/*": ["./src/*"],
         "@screens/*": ["./src/screens/*"],
+        "@components/*": ["./src/components/*"],
+        "@contexts/*": ["./src/contexts/*"],
+        "@types/*": ["./src/@types/*"],
     },
     /* Basic Options */
     "target": "esnext",                       /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
@@ -62,6 +65,7 @@
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
+  "typeRoots": ["./src/@types"],
   "exclude": [
     "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"
   ]

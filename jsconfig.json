@@ -4,6 +4,9 @@
         "paths": {
             "~/*": ["./src/*"],
             "@screens/*": ["./src/screens/*"],
+            "@components/*": ["./src/components/*"],
+            "@contexts/*": ["./src/contexts/*"],
+            "@types/*": ["./src/@types/*"],
         },
         "target": "esnext",
         "module": "commonjs"
