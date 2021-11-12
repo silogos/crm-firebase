@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { UserInterface } from '~/@types/UserInterface';
 
 export type UserContextType = {
-  user: FirebaseAuthTypes.User | null;
-  setUser: (user: FirebaseAuthTypes.User | null) => void;
+  user: UserInterface | null;
+  setUser: (user: UserInterface | null) => void;
 };
 
 export const UserContext = createContext<UserContextType>({

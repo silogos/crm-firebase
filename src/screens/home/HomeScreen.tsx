@@ -1,19 +1,17 @@
-import React, { FC, memo, useEffect } from 'react';
+import React, { FC, memo, useContext, useEffect } from 'react';
 import { Text, ScrollView, FlatList, Dimensions, Image } from 'react-native';
 import Box from '@components/box';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { firebase } from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/Fontisto';
 import { useNavigation } from '@react-navigation/native';
+import useHome from './useHome';
+import { UserContext } from '~/contexts/UserContext';
 
 const HomeScreen: FC = () => {
   const navigation = useNavigation();
-  const user = firebase.auth().currentUser;
-  const SCREEN_WIDTH = Dimensions.get('window').width;
-  const BOX_COLUMN = 2;
-  const BOX_MARGIN = 15;
-  const BOX_WIDTH = (SCREEN_WIDTH - BOX_MARGIN * (BOX_COLUMN + 1)) / BOX_COLUMN;
-
+  const userContext = useContext(UserContext);
+  const {} = useHome();
   const MENUS = [
     { key: 'calendar', name: 'Calendar', icon: 'calendar' },
     { key: 'Group', name: 'Groups', icon: 'persons' },
@@ -46,7 +44,7 @@ const HomeScreen: FC = () => {
               marginRight={14}
               overflow={'hidden'}>
               <Image
-                source={{ uri: user?.photoURL }}
+                source={{ uri: userContext.user?.photoURL }}
                 style={{
                   flex: 1,
                   width: null,
@@ -57,10 +55,10 @@ const HomeScreen: FC = () => {
             </Box>
             <Box flex={1}>
               <Text style={{ fontSize: 21, color: '#FFF' }} numberOfLines={1}>
-                {user?.displayName}
+                {userContext.user?.name}
               </Text>
               <Text style={{ fontSize: 14, color: '#FFF' }} numberOfLines={1}>
-                {user?.email}
+                {userContext.user?.email}
               </Text>
             </Box>
           </Box>

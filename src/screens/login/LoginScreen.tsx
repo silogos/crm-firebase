@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Button, ScrollView, Text, View } from 'react-native';
 import Box from '@components/box';
-import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/Fontisto';
 import useLoginScreen from './useLoginScreen';
+import TextInputLabel from '~/components/text-input-label';
 
 const LoginScreen: FC = () => {
   const {
@@ -17,54 +18,42 @@ const LoginScreen: FC = () => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <Box
+        elevation={1}
         height={250}
+        backgroundColor={'#0c7e93'}
         justifyContent={'center'}
-        alignItems={'center'}
-        backgroundColor={'red'}>
+        alignItems={'center'}>
         <Box
+          elevation={2}
+          justifyContent={'center'}
+          alignItems={'center'}
           width={100}
           height={100}
           borderRadius={100}
-          backgroundColor={'yellow'}
-        />
+          backgroundColor={'#FFF'}>
+          <Icon name={'person'} size={50} color="#0c7e93" />
+        </Box>
       </Box>
-      <Box padding={21}>
-        <Box
-          borderWidth={1}
-          borderRadius={6}
-          margin={2}
-          marginBottom={15}
-          padding={6}>
-          <TextInput
-            placeholder={'Username'}
-            style={{ fontSize: 21 }}
-            value={username}
-            onChangeText={text => setUsername(text)}
-          />
-        </Box>
-        <Box
-          borderWidth={1}
-          borderRadius={6}
-          margin={2}
-          marginBottom={15}
-          padding={6}>
-          <TextInput
-            placeholder={'Password'}
-            style={{ fontSize: 21 }}
-            value={password}
-            onChangeText={text => setPassword(text)}
-          />
-        </Box>
-        <TouchableHighlight onPress={() => login()} underlayColor={'#CCC'}>
-          <Box
-            justifyContent={'center'}
-            alignItems={'center'}
-            borderWidth={1}
-            margin={2}
-            padding={10}>
-            <Text style={{ fontSize: 21 }}>Submit</Text>
-          </Box>
-        </TouchableHighlight>
+      <Box padding={30}>
+        <TextInputLabel
+          label={'Username'}
+          placeholder={'Username'}
+          wrapperStyle={{ marginBottom: 15 }}
+          // style={ClientAddStyle.textInput}
+          value={username}
+          onChangeText={text => setUsername(text)}
+        />
+        <TextInputLabel
+          label={'Password'}
+          placeholder={'Password'}
+          wrapperStyle={{ marginBottom: 15 }}
+          // wrapperStyle={ClientAddStyle.lastNameWrapper}
+          // style={ClientAddStyle.textInput}
+          value={password}
+          onChangeText={text => setPassword(text)}
+          secureTextEntry={true}
+        />
+        <Button title="Submit" color="#00a400" onPress={login} />
       </Box>
     </ScrollView>
   );

@@ -8,6 +8,7 @@ import GroupScreen from '~/screens/group';
 import GroupAddScreen from '~/screens/group/add';
 import ClientScreen from '~/screens/client';
 import ClientAddScreen from '~/screens/client/add';
+import CalendarScreen from '~/screens/calendar/CalendarScreen';
 
 const Stack = createStackNavigator();
 const MainNavigation: FC = () => {
@@ -22,6 +23,18 @@ const MainNavigation: FC = () => {
               name="Home"
               component={HomeScreen}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Calendar"
+              component={CalendarScreen}
+              options={{
+                headerShown: false,
+                //    title: 'Calendar',
+                // headerStyle: {
+                //   borderBottomWidth: 1,
+                //   borderBottomColor: '#CCC',
+                // },
+              }}
             />
             <Stack.Screen
               name="Group"

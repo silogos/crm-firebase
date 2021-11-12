@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function useLoginScreen() {
   const [username, setUsername] = useState('');
@@ -13,6 +14,17 @@ function useLoginScreen() {
         username,
         password,
       );
+      console.log({ loginService });
+      firestore()
+        .collection('user')
+        .doc(loginService.user.uid)
+        .set(
+          {
+            metadata: loginService.user.metadata,
+            ...loginService.user.providerData[0],
+          },
+          { merge: true },
+        );
 
       console.log('User account created & signed in!', loginService);
       setLoading(false);
@@ -29,13 +41,6 @@ function useLoginScreen() {
       setLoading(false);
     }
   }, [username, password]);
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(user => {
-      console.error(user);
-    });
-    return subscriber; // unsubscribe on unmount
-  }, []);
 
   return {
     username,
